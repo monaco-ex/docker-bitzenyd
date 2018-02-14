@@ -5,7 +5,7 @@ ENV build_packages "git curl autoconf automake libtool make g++"
 ENV library_packages "boost-dev libressl-dev protobuf-dev libqrencode-dev libevent-dev"
 ENV JOBS 4
 
-ARG REF=master
+ARG REF=z2.0.x
 
 RUN apk --no-cache --update add --virtual .build ${build_packages} && \
     apk --no-cache --update add ${library_packages} && \
@@ -18,9 +18,8 @@ RUN apk --no-cache --update add --virtual .build ${build_packages} && \
     make install_lib install_include && \
     cd ../.. && \
     rm -rf db-4.8.30.NC && \
-    git clone https://github.com/BitzenyCoreDevelopers/bitzeny.git bitzeny && \
+    git clone https://github.com/BitzenyCoreDevelopers/bitzeny.git -b "$REF" --depth 1 && \
     cd bitzeny && \
-    git checkout "$REF" && \
     ./autogen.sh && \
     sed -e 's/wait $am_sleep/:/' configure > configure.new && \
     chmod +x configure.new && \
