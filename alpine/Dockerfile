@@ -5,7 +5,7 @@ ENV build_packages "git curl autoconf automake libtool make g++"
 ENV library_packages "boost-dev libressl-dev protobuf-dev libqrencode-dev libevent-dev"
 ENV JOBS 4
 
-ARG REF=z2.0.x
+ARG REF=z2.0.2
 
 RUN apk --no-cache --update add --virtual .build ${build_packages} && \
     apk --no-cache --update add ${library_packages} && \
