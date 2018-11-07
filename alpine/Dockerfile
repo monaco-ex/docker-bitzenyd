@@ -28,6 +28,8 @@ RUN apk --no-cache --update add --virtual .build ${build_packages} && \
 
 FROM alpine
 
+ENV library_packages "boost-dev libressl protobuf libqrencode libevent"
+
 RUN apk --no-cache --update add ${library_packages}
 COPY --from=build /bitzeny/src/bitzenyd /usr/bin/bitzenyd
 
