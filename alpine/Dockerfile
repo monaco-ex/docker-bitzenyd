@@ -32,6 +32,7 @@ ENV library_packages "boost-dev libressl protobuf libqrencode libevent"
 
 RUN apk --no-cache --update add ${library_packages}
 COPY --from=build /bitzeny/src/bitzenyd /usr/bin/bitzenyd
+COPY --from=build /bitzeny/src/bitzeny-cli /usr/bin/bitzeny-cli
 
 VOLUME /root/.bitzeny
 EXPOSE 9252 9253
